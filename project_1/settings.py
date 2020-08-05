@@ -37,10 +37,9 @@ if DEV:
 else:
     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') 
     DEBUG = os.environ.get('DJANGO_DEBUG') 
-    ALLOWED_HOSTS = ['localhost','127.0.0.1']
+    ALLOWED_HOSTS = ['rest-appointments-backend.herokuapp.com']
     DB_PASS = os.environ.get('DJANGO_DB_PASS')
     DB_USER = os.environ.get('DJANGO_DB_USER')
-    print('env heroku variables')
     
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -155,18 +154,27 @@ SIMPLE_JWT = {
 #
 # Cors
 CORS_ORIGIN_ALLOW_ALL = False 
-CORS_ORIGIN_WHITELIST = [
+if DEV:
+    CORS_ORIGIN_WHITELIST = [
         "http://127.0.0.1:8000",
         "http://localhost:3000", 
         "http://localhost:5000", 
         "http://127.0.0.1:8080", 
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'localhost:3000',
-    'localhost:5000',
-    '127.0.0.1:8080',
-]
+    ]
+    
+    CSRF_TRUSTED_ORIGINS = [
+        'localhost:3000',
+        'localhost:5000',
+        '127.0.0.1:8080',
+    ]
+else: 
+    CORS_ORIGIN_WHITELIST = [
+        "https://calendar-test-2.herokuapp.com",
+    ]
+    
+    CSRF_TRUSTED_ORIGINS = [
+        'calendar-test-2.herokuapp.com',
+    ]
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
