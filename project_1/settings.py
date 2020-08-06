@@ -37,7 +37,7 @@ if DEV:
 else:
     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') 
     DEBUG = os.environ.get('DJANGO_DEBUG') 
-    ALLOWED_HOSTS = ['rest-appointments-backend.herokuapp.com']
+    ALLOWED_HOSTS = ['rest-appointments-backend.herokuapp.com', 'calendar-test-2.herokuapp.com']
     DB_PASS = os.environ.get('DJANGO_DB_PASS')
     DB_USER = os.environ.get('DJANGO_DB_USER')
     
@@ -169,7 +169,7 @@ if DEV:
     ]
 else: 
     CORS_ORIGIN_WHITELIST = [
-        "https://calendar-test-2.herokuapp.com",
+        "https://calendar-test-2.herokuapp.com/",
     ]
     
     CSRF_TRUSTED_ORIGINS = [
